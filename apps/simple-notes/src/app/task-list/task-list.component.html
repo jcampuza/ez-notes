@@ -1,6 +1,6 @@
 <div class="task-list-title">
-  <button (click)="setShowAll()">
-    {{ showAll ? 'Show Incomplete' : 'Show All' }}
+  <button (click)="toggleShowALl()">
+    {{ (showAll$ | async) ? 'Show Incomplete' : 'Show All' }}
   </button>
 
   <simple-notes-help></simple-notes-help>
@@ -8,13 +8,13 @@
 
 <ul class="tasks-list">
   <li
-    *ngFor="let task of getVisibleTasks(); trackBy: trackTaskById"
+    *ngFor="let task of tasks$ | async as tasks; trackBy: trackTaskById"
     class="tasks-list-item"
     [class.tasks-list-item-completed]="task.completed"
   >
     <p>{{ task.id }} - {{ task.task }}</p>
 
-    <button class="ml-4" (click)="onToggle(task)">
+    <button class="ml-4" (click)="onToggle(tasks, task)">
       {{ task.completed ? '❌' : '✅' }}
     </button>
   </li>

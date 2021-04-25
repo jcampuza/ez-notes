@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { map, tap, withLatestFrom } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
+import { map, withLatestFrom } from 'rxjs/operators';
 import { TextService } from './text.service';
 import { throttleTimeTrailing } from './util';
 
@@ -19,24 +19,41 @@ export class TaskService {
   constructor(private textService: TextService) {}
 
   tasks$ = this.textService.value$.pipe(
-    throttleTimeTrailing(400),
+    throttleTimeTrailing(500),
     map((text) => this.tasksFromText(text))
+  );
+
+  showAllFilter$ = new BehaviorSubject<boolean>(false);
+  toggleShowAll() {
+    const v = this.showAllFilter$.getValue();
+    this.showAllFilter$.next(!v);
+  }
+
+  visibleTasks$ = combineLatest([this.tasks$, this.showAllFilter$]).pipe(
+    map(([tasks, showAll]) => {
+      if (!tasks) {
+        return [];
+      }
+
+      if (showAll) {
+        return [...tasks].reverse();
+      }
+
+      return [...tasks].filter((t) => !t.completed).reverse();
+    })
   );
 
   private onTasksUpdated$ = new Subject<Task[]>();
 
+  private taskUpdateWatcher$ = this.onTasksUpdated$
+    .pipe(withLatestFrom(this.textService.value$))
+    .subscribe(([tasks, text]) => {
+      this.updateTextFromTask(text, tasks);
+    });
+
   updateTasks(tasks: Task[]) {
     this.onTasksUpdated$.next(tasks);
   }
-
-  private taskUpdateWatcher$ = this.onTasksUpdated$
-    .pipe(
-      withLatestFrom(this.textService.value$),
-      tap(([tasks, text]) => {
-        this.updateTextFromTask(text, tasks);
-      })
-    )
-    .subscribe();
 
   createTask(task: Task) {
     return task;

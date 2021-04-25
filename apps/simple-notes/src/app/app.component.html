@@ -1,13 +1,5 @@
 <div class="grid">
-  <textarea
-    class="grid-writer-input"
-    placeholder="Start Writing Here..."
-    [value]="value$ | async"
-    (input)="onTextChanged($event)"
-  ></textarea>
+  <simple-notes-writer></simple-notes-writer>
 
-  <simple-notes-task-list
-    [tasks]="tasks$ | async"
-    (tasksUpdate)="taskToggled($event)"
-  ></simple-notes-task-list>
+  <simple-notes-task-list></simple-notes-task-list>
 </div>

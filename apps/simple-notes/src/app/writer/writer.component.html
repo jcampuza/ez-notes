@@ -1,0 +1,7 @@
+<textarea
+  class="grid-writer-input"
+  placeholder="Start Writing Here..."
+  [value]="value$ | async"
+  (input)="onTextChanged($event)"
+  #writer
+></textarea>
