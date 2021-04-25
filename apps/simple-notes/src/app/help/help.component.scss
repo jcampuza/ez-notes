@@ -1,7 +1,6 @@
-.help {
-  position: fixed;
-  top: 0.5rem;
-  right: 0.5rem;
+:host {
+  display: block;
+  position: relative;
 }
 
 .help-icon {
@@ -11,9 +10,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.4rem;
+  height: 1.4rem;
   opacity: 0.75;
+
+  &:hover,
+  &:focus {
+    background: white;
+    color: black;
+  }
 }
 
 .help-container {

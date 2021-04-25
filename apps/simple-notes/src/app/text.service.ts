@@ -10,15 +10,9 @@ import { Destroyer, throttleTimeTrailing } from './util';
 export class TextService implements OnDestroy {
   constructor(private persistanceService: PersistanceService) {}
 
-  private _value$ = new BehaviorSubject(this.persistanceService.getText());
-
-  value$ = this._value$.asObservable();
-
-  setValue(value: string) {
-    this._value$.next(value);
-  }
-
   private destroyer$ = new Destroyer();
+
+  private _value$ = new BehaviorSubject(this.persistanceService.getText());
 
   private onStorageUpdated$ = this.persistanceService.update$
     .pipe(takeUntil(this.destroyer$))
@@ -31,6 +25,11 @@ export class TextService implements OnDestroy {
     .subscribe((value) => {
       this.persistanceService.storeText(value);
     });
+
+  value$ = this._value$.asObservable();
+  setValue(value: string) {
+    this._value$.next(value);
+  }
 
   ngOnDestroy() {
     this.destroyer$.destroy();
