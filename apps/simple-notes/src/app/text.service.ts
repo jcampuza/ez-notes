@@ -1,15 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
-import { debounceTime, takeUntil, throttleTime } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { PersistanceService } from './persistance.service';
-
-class Destroyer extends Subject<void> {
-  destroy() {
-    this.next();
-    this.complete();
-  }
-}
+import { Destroyer, throttleTimeTrailing } from './util';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +27,7 @@ export class TextService implements OnDestroy {
     });
 
   private storageUpdater$ = this._value$
-    .pipe(throttleTime(400), takeUntil(this.destroyer$))
+    .pipe(throttleTimeTrailing(400), takeUntil(this.destroyer$))
     .subscribe((value) => {
       this.persistanceService.storeText(value);
     });

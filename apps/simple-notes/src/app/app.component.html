@@ -9,7 +9,7 @@
   ></textarea>
 
   <simple-notes-task-list
-    [tasks]="this.tasks$ | async"
+    [tasks]="tasks$ | async"
     (tasksUpdate)="taskToggled($event)"
   ></simple-notes-task-list>
 </div>

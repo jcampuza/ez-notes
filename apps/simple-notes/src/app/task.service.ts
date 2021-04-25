@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import {
-  debounceTime,
-  map,
-  tap,
-  throttleTime,
-  withLatestFrom,
-} from 'rxjs/operators';
+import { map, tap, withLatestFrom } from 'rxjs/operators';
 import { TextService } from './text.service';
+import { throttleTimeTrailing } from './util';
 
 export interface Task {
   task: string;
@@ -24,7 +19,7 @@ export class TaskService {
   constructor(private textService: TextService) {}
 
   tasks$ = this.textService.value$.pipe(
-    throttleTime(400),
+    throttleTimeTrailing(400),
     map((text) => this.tasksFromText(text))
   );
 
