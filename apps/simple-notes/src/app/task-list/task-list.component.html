@@ -1,0 +1,21 @@
+<div class="grid-tasks">
+  <div class="pa-2">
+    <button (click)="setShowAll()">
+      {{ showAll ? 'Show Incomplete' : 'Show All' }}
+    </button>
+  </div>
+
+  <ul class="grid-tasks-list">
+    <li
+      *ngFor="let task of getVisibleTasks(); trackBy: trackTaskById"
+      class="grid-tasks-list-item"
+      [class.grid-tasks-list-item-completed]="task.completed"
+    >
+      <p>{{ task.id }} - {{ task.task }}</p>
+
+      <button class="ml-4" (click)="onToggle(task)">
+        {{ task.completed ? '❌' : '✅' }}
+      </button>
+    </li>
+  </ul>
+</div>

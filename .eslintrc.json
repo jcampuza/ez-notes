@@ -15,7 +15,8 @@
               { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
             ]
           }
-        ]
+        ],
+        "@typescript-eslint/member-ordering": ["off"]
       }
     },
     {
@@ -28,5 +29,6 @@
       "extends": ["plugin:@nrwl/nx/javascript"],
       "rules": {}
     }
-  ]
+  ],
+  "rules": {}
 }

@@ -1,5 +1,5 @@
 {
-  "name": "ez-notes-nx",
+  "name": "simple-notes",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -11,6 +11,7 @@
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
+    "g:lib": "nx generate @nrwl/workspace:library",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",

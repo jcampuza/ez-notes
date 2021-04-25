@@ -1,0 +1,136 @@
+/* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #2a2a2a;
+  color: #eaeaea;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  font-size: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  color: inherit;
+}
+
+.grid {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr minmax(250px, 25%);
+}
+
+.grid-writer {
+  height: 100%;
+  width: 100%;
+  border-right: 1px solid gray;
+}
+
+.grid-writer-input {
+  resize: none;
+  flex: 1;
+  padding: 2rem 1.25rem;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  border: none;
+  border-right: 1px solid gray;
+  background-color: #2a2a2a;
+  color: #dadada;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  outline: none;
+}
+
+.grid-tasks {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.grid-tasks-list {
+  overflow: auto;
+  height: 100%;
+  padding: 0;
+}
+
+.grid-tasks-list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
+  border-bottom: 1px solid gray;
+}
+
+.grid-tasks-list-item-completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.pa-2 {
+  padding: 0.5rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.help {
+  position: fixed;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.help-icon {
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  opacity: 0.75;
+}
+
+.help-container {
+  border: 1px solid gray;
+  padding: 1rem;
+  background: #141414;
+  position: absolute;
+  right: 0.5rem;
+  width: 200px;
+  font-size: 0.8rem;
+  top: calc(100% + 0.5rem);
+}

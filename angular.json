@@ -3,7 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
-  "defaultProject": "ez-notes",
+  "defaultProject": "simple-notes",
   "schematics": {
     "@nrwl/angular": {
       "application": {
@@ -28,125 +28,11 @@
       "unitTestRunner": "jest"
     },
     "@nrwl/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "changeDetection": "OnPush"
     }
   },
   "projects": {
-    "ez-notes": {
-      "projectType": "application",
-      "root": "apps/ez-notes",
-      "sourceRoot": "apps/ez-notes/src",
-      "prefix": "ez-notes-nx",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/ez-notes",
-            "index": "apps/ez-notes/src/index.html",
-            "main": "apps/ez-notes/src/main.ts",
-            "polyfills": "apps/ez-notes/src/polyfills.ts",
-            "tsConfig": "apps/ez-notes/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "apps/ez-notes/src/favicon.ico",
-              "apps/ez-notes/src/assets"
-            ],
-            "styles": ["apps/ez-notes/src/styles.scss"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/ez-notes/src/environments/environment.ts",
-                  "with": "apps/ez-notes/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "ez-notes:build",
-            "proxyConfig": "apps/ez-notes/proxy.conf.json"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "ez-notes:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "ez-notes:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/ez-notes/src/**/*.ts",
-              "apps/ez-notes/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/ez-notes"],
-          "options": {
-            "jestConfig": "apps/ez-notes/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "ez-notes-e2e": {
-      "root": "apps/ez-notes-e2e",
-      "sourceRoot": "apps/ez-notes-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/ez-notes-e2e/cypress.json",
-            "tsConfig": "apps/ez-notes-e2e/tsconfig.e2e.json",
-            "devServerTarget": "ez-notes:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ez-notes:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/ez-notes-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
     "api": {
       "root": "apps/api",
       "sourceRoot": "apps/api/src",
@@ -206,6 +92,146 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api-interfaces/**/*.ts"]
+          }
+        }
+      }
+    },
+    "ng-common": {
+      "projectType": "library",
+      "root": "libs/ng-common",
+      "sourceRoot": "libs/ng-common/src",
+      "prefix": "simple-notes",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ng-common/src/**/*.ts",
+              "libs/ng-common/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng-common"],
+          "options": {
+            "jestConfig": "libs/ng-common/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "simple-notes": {
+      "projectType": "application",
+      "root": "apps/simple-notes",
+      "sourceRoot": "apps/simple-notes/src",
+      "prefix": "simple-notes",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/simple-notes",
+            "index": "apps/simple-notes/src/index.html",
+            "main": "apps/simple-notes/src/main.ts",
+            "polyfills": "apps/simple-notes/src/polyfills.ts",
+            "tsConfig": "apps/simple-notes/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/simple-notes/src/favicon.ico",
+              "apps/simple-notes/src/assets"
+            ],
+            "styles": ["apps/simple-notes/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/simple-notes/src/environments/environment.ts",
+                  "with": "apps/simple-notes/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "simple-notes:build",
+            "proxyConfig": "apps/simple-notes/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "simple-notes:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "simple-notes:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/simple-notes/src/**/*.ts",
+              "apps/simple-notes/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/simple-notes"],
+          "options": {
+            "jestConfig": "apps/simple-notes/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "simple-notes-e2e": {
+      "root": "apps/simple-notes-e2e",
+      "sourceRoot": "apps/simple-notes-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/simple-notes-e2e/cypress.json",
+            "tsConfig": "apps/simple-notes-e2e/tsconfig.e2e.json",
+            "devServerTarget": "simple-notes:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "simple-notes:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/simple-notes-e2e/**/*.{js,ts}"]
           }
         }
       }

@@ -15,8 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ez-notes-nx/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@simple-notes/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@simple-notes/ng-common": ["libs/ng-common/src/index.ts"]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictTemplates": true
   },
   "exclude": ["node_modules", "tmp"]
 }

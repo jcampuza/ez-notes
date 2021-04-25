@@ -1,0 +1,11 @@
+<div class="help">
+  <span role="button" tabIndex="{0}" (click)="toggleOpen()" class="help-icon">
+    ?
+  </span>
+
+  <ng-container *ngIf="isOpen">
+    <div class="help-container">
+      <p>Typing !task will create a task</p>
+    </div>
+  </ng-container>
+</div>

@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('ez-notes', () => {
+describe('simple-notes', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {

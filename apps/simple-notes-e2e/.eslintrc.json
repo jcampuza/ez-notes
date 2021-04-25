@@ -1,11 +1,11 @@
 {
-  "extends": ["plugin:cypress/recommended", "../../.eslintrc.json"],
+  "extends": "../../.eslintrc.json",
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": "apps/ez-notes-e2e/tsconfig.*?.json"
+        "project": "apps/simple-notes-e2e/tsconfig.*?.json"
       },
       "rules": {}
     },

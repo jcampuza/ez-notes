@@ -1,3 +1,7 @@
 module.exports = {
-  projects: ['<rootDir>/apps/ez-notes', '<rootDir>/apps/api'],
+  projects: [
+    '<rootDir>/apps/simple-notes',
+    '<rootDir>/apps/api',
+    '<rootDir>/libs/ng-common',
+  ],
 };

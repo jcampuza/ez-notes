@@ -9,7 +9,7 @@
   "affected": {
     "defaultBase": "master"
   },
-  "npmScope": "ez-notes-nx",
+  "npmScope": "simple-notes",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
@@ -19,18 +19,21 @@
     }
   },
   "projects": {
-    "ez-notes": {
-      "tags": []
-    },
-    "ez-notes-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ez-notes"]
-    },
     "api": {
       "tags": []
     },
     "api-interfaces": {
       "tags": []
+    },
+    "ng-common": {
+      "tags": []
+    },
+    "simple-notes": {
+      "tags": []
+    },
+    "simple-notes-e2e": {
+      "tags": [],
+      "implicitDependencies": ["simple-notes"]
     }
   }
 }
