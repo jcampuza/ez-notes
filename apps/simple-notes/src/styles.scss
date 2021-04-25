@@ -73,64 +73,10 @@ button {
   outline: none;
 }
 
-.grid-tasks {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.grid-tasks-list {
-  overflow: auto;
-  height: 100%;
-  padding: 0;
-}
-
-.grid-tasks-list-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  align-items: center;
-  border-bottom: 1px solid gray;
-}
-
-.grid-tasks-list-item-completed {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
 .pa-2 {
   padding: 0.5rem;
 }
 
 .ml-4 {
   margin-left: 1rem;
-}
-
-.help {
-  position: fixed;
-  top: 0.5rem;
-  right: 0.5rem;
-}
-
-.help-icon {
-  cursor: pointer;
-  border: 1px solid white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.1rem;
-  height: 1.1rem;
-  opacity: 0.75;
-}
-
-.help-container {
-  border: 1px solid gray;
-  padding: 1rem;
-  background: #141414;
-  position: absolute;
-  right: 0.5rem;
-  width: 200px;
-  font-size: 0.8rem;
-  top: calc(100% + 0.5rem);
 }

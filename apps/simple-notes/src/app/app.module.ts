@@ -7,7 +7,7 @@ import { TaskListComponent } from './task-list/task-list.component';
 @NgModule({
   declarations: [AppComponent, HelpComponent, TaskListComponent],
   imports: [BrowserModule],
-  providers: [],
   bootstrap: [AppComponent],
+  providers: [],
 })
 export class AppModule {}
