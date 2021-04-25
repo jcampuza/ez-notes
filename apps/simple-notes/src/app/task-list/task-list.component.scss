@@ -1,16 +1,16 @@
-.grid-tasks {
+:host {
+  display: block;
+  overflow: hidden;
+  height: 100%;
+}
+
+.tasks-list {
   height: 100%;
   width: 100%;
-  overflow: hidden;
-}
-
-.grid-tasks-list {
   overflow: auto;
-  height: 100%;
-  padding: 0;
 }
 
-.grid-tasks-list-item {
+.tasks-list-item {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -18,7 +18,7 @@
   border-bottom: 1px solid gray;
 }
 
-.grid-tasks-list-item-completed {
+.tasks-list-item-completed {
   text-decoration: line-through;
   opacity: 0.5;
 }

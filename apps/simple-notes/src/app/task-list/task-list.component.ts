@@ -32,18 +32,15 @@ export class TaskListComponent {
   };
 
   getVisibleTasks() {
-    if (this.showAll) {
-      return this.tasks;
-    }
-
     if (!this.tasks) {
       return [];
     }
 
-    return this.tasks
-      .filter((t) => !t.completed)
-      .slice()
-      .reverse();
+    if (this.showAll) {
+      return [...this.tasks].reverse();
+    }
+
+    return [...this.tasks].filter((t) => !t.completed).reverse();
   }
 
   onToggle(task: Task) {
