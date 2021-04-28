@@ -32,17 +32,7 @@ export class TaskListComponent {
     return task.id;
   };
 
-  onToggle(tasks: Task[], task: Task) {
+  onToggle(task: Task) {
     this.taskService.toggleTask(task);
-    // this.taskService.toggleTask(task);
-    // const updatedTasks = tasks.map((item) => {
-    //   if (item.id === task.id) {
-    //     return this.taskService.cloneTask(item, { completed: !item.completed });
-    //   }
-
-    //   return item;
-    // });
-
-    // this.taskService.updateTasks(updatedTasks);
   }
 }

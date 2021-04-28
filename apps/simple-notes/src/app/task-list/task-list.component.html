@@ -14,7 +14,7 @@
   >
     <p>{{ task.id }} - {{ task.task }}</p>
 
-    <button class="ml-4" (click)="onToggle(tasks, task)">
+    <button class="ml-4" (click)="onToggle(task)">
       {{ task.completed ? '❌' : '✅' }}
     </button>
   </li>
