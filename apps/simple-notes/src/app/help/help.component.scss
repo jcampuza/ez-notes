@@ -13,12 +13,7 @@
   width: 1.4rem;
   height: 1.4rem;
   opacity: 0.75;
-
-  &:hover,
-  &:focus {
-    background: white;
-    color: black;
-  }
+  padding: 0;
 }
 
 .help-container {

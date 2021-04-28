@@ -20,7 +20,7 @@ export class TaskService {
 
   tasks$ = this.textService.value$.pipe(
     throttleTimeTrailing(500),
-    map((text) => this.tasksFromText(text))
+    map((text) => this.getTasksFromText(text))
   );
 
   showAllFilter$ = new BehaviorSubject<boolean>(false);
@@ -43,16 +43,24 @@ export class TaskService {
     })
   );
 
-  private onTasksUpdated$ = new Subject<Task[]>();
+  private onToggleTaskSubject$ = new Subject<Task>();
 
-  private taskUpdateWatcher$ = this.onTasksUpdated$
-    .pipe(withLatestFrom(this.textService.value$))
-    .subscribe(([tasks, text]) => {
-      this.updateTextFromTask(text, tasks);
+  private onToggleTask$ = this.onToggleTaskSubject$
+    .pipe(withLatestFrom(this.tasks$, this.textService.value$))
+    .subscribe(([task, tasks, value]) => {
+      const updatedTasks = tasks.map((item) => {
+        if (item.id === task.id) {
+          return this.cloneTask(item, { completed: !item.completed });
+        }
+
+        return item;
+      });
+
+      this.updateTextFromTask(value, updatedTasks);
     });
 
-  updateTasks(tasks: Task[]) {
-    this.onTasksUpdated$.next(tasks);
+  toggleTask(task: Task) {
+    this.onToggleTaskSubject$.next(task);
   }
 
   createTask(task: Task) {
@@ -70,7 +78,7 @@ export class TaskService {
     return `${TASK_COMMAND}${task.task}${task.completed ? ' /done' : ''}`;
   }
 
-  taskFromTextLine(line: string, id: number) {
+  getTaskFromTextLine(line: string, id: number) {
     return this.createTask({
       task: line.split(TASK_COMMAND)[1].replace(' /done', ''),
       id: id,
@@ -78,13 +86,13 @@ export class TaskService {
     });
   }
 
-  tasksFromText(text: string) {
+  getTasksFromText(text: string) {
     const lines = text.split('\n');
 
     const tasks = lines
       .filter((line) => line.startsWith(TASK_COMMAND))
       .map((line, index) => {
-        return this.taskFromTextLine(line, index);
+        return this.getTaskFromTextLine(line, index);
       });
 
     return tasks;

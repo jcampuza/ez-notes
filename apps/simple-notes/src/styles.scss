@@ -36,41 +36,20 @@ p {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-button {
+.button {
   padding: 0;
   background-color: transparent;
-  border: none;
-  border-radius: 3px;
+  border: 1px solid white;
+  border-radius: 2px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   color: inherit;
-}
 
-.grid {
-  display: grid;
-  height: 100%;
-  grid-template-columns: 1fr minmax(200px, 25%);
-}
-
-.grid-writer {
-  height: 100%;
-  width: 100%;
-  border-right: 1px solid gray;
-}
-
-.grid-writer-input {
-  resize: none;
-  flex: 1;
-  padding: 2rem 1.25rem;
-  width: 100%;
-  height: 100%;
-  font-size: 1rem;
-  border: none;
-  border-right: 1px solid #aaa;
-  background-color: #2a2a2a;
-  color: #dadada;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  outline: none;
+  &:hover,
+  &:focus {
+    background-color: white;
+    color: black;
+  }
 }
 
 .pa-2 {
@@ -95,4 +74,9 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #fff;
+}
+
+*::selection {
+  background: white;
+  color: black;
 }

@@ -1,0 +1,16 @@
+<ul class="page-list">
+  <li
+    class="page-list-item"
+    *ngFor="let page of pageList$ | async"
+    tabindex="0"
+    (keydown.enter)="selectPage(page)"
+    (click)="selectPage(page)"
+  >
+    <p class="page-list-item-title">{{ getPageName(page) }}</p>
+    <small>{{ page.updated | date }}</small>
+  </li>
+</ul>
+
+<div class="pa-2">
+  <button class="button" (click)="createPage()">New Page</button>
+</div>

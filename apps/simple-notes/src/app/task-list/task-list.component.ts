@@ -18,7 +18,9 @@ export class TaskListComponent {
 
   constructor(private taskService: TaskService) {}
 
-  tasks$ = this.taskService.visibleTasks$;
+  visibleTasks$ = this.taskService.visibleTasks$;
+
+  allTasks$ = this.taskService.tasks$;
 
   showAll$ = this.taskService.showAllFilter$;
 
@@ -31,14 +33,16 @@ export class TaskListComponent {
   };
 
   onToggle(tasks: Task[], task: Task) {
-    const updatedTasks = tasks.map((item) => {
-      if (item.id === task.id) {
-        return this.taskService.cloneTask(item, { completed: !item.completed });
-      }
+    this.taskService.toggleTask(task);
+    // this.taskService.toggleTask(task);
+    // const updatedTasks = tasks.map((item) => {
+    //   if (item.id === task.id) {
+    //     return this.taskService.cloneTask(item, { completed: !item.completed });
+    //   }
 
-      return item;
-    });
+    //   return item;
+    // });
 
-    this.taskService.updateTasks(updatedTasks);
+    // this.taskService.updateTasks(updatedTasks);
   }
 }
